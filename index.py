@@ -48,5 +48,9 @@ def get_command_history():
             file.write(cmd + '\n')
     return jsonify({'message': 'Command history exported to command_history.txt'}), 200
 
+@app.route('/metrics')
+def metrics_endpoint():
+    return metrics.generate_latest()
+
 if __name__ == '__main__':
     app.run(port=5005, host='0.0.0.0', debug=True)
