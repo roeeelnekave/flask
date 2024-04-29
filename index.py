@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 import subprocess
 import platform
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app)
 
 # Store command history
 command_history = []
@@ -47,4 +49,4 @@ def get_command_history():
     return jsonify({'message': 'Command history exported to command_history.txt'}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5005, host='0.0.0.0', debug=True)
