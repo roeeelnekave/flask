@@ -5,4 +5,4 @@ prometheus:
     scrape_configs:
       - job_name: 'flask-app'
         static_configs:
-          - targets: ['flask-app:5000']  # Replace with your Flask application's hostname and port
+          - targets: ['flask-app:5005']  # Replace with your Flask application's hostname and port
