@@ -1,11 +1,13 @@
-FROM python:latest
+FROM python:3.9-slim
 
-COPY requirements.txt .
+WORKDIR /app
 
-RUN pip install -r requirements.txt
+COPY . /app
 
-COPY index.py .
+RUN pip install --no-cache-dir flask prometheus-flask-exporter
 
 EXPOSE 5005
 
-CMD ["python", "index.py"]
+ENV FLASK_APP=index.py
+
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5005"]
